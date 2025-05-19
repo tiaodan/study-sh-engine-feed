@@ -47,8 +47,9 @@ start_feed() {
 		exit 1
 	fi
 	# 检查 num 是否为数字（可选）
-	if ! [[ "$num" =~ ^[1-5]+$ ]]; then
-		echo "错误：num 必须是一个数字[1-5]！"
+	#if ! [[ "$num" =~ ^[1-5]+$ ]]; then
+	if ! [[ "$num" =~ ^([1-5]|433|900|1400|2400|5800)$ ]]; then
+		echo "错误：num 必须是一个数字[1-5]！或者频段 433 2400 这种"
 		exit 1
 	fi
 
@@ -58,7 +59,22 @@ start_feed() {
 		echo "执行命令 $((i+1)): ${cmds[i]}"
 		eval "${cmds[i]}"
 		done
-	else
+	elif [[ $num == 433 ]];then
+		echo "执行命令 $((i+1)): ${cmds[0]}"
+		eval "${cmds[0]}"
+	elif [[ $num == 900 ]];then
+		echo "执行命令 $((i+1)): ${cmds[1]}"
+		eval "${cmds[1]}"
+	elif [[ $num == 1400 ]];then
+		echo "执行命令 $((i+1)): ${cmds[2]}"
+		eval "${cmds[2]}"
+	elif [[ $num == 2400 ]];then
+		echo "执行命令 $((i+1)): ${cmds[3]}"
+		eval "${cmds[3]}"
+	elif [[ $num == 5800 ]];then
+		echo "执行命令 $((i+1)): ${cmds[4]}"
+		eval "${cmds[4]}"
+	else 
 		echo "输入错误,退出"
 		exit
 	fi
@@ -112,6 +128,8 @@ main() {
 			echo "用法：$0 {start|stop}"
 			echo "start: 启动信号回放任务"
 			echo "  示例: $0 start user1 testEngine 192.168.85.239 5"
+			echo "  示例-只回放一个频段: $0 start user1 testEngine 192.168.85.239  <433 900 1400 2400 5800> <>里随便输入一个频段"
+			echo "  示例-同时回放一个频段: $0 start user1 testEngine 192.168.85.239  433 900 1400 2400 5800"
 			echo "stop:  停止指定信号回放任务"
 			echo "  示例: $0 stop username taskname"
 			exit 1
