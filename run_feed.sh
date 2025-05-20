@@ -32,11 +32,11 @@ start_feed() {
 		#echo "ll"
 		#echo "df -h"
 
-		"./feed_with_user_task.py -i $ip -d $xinhao/433M/433/459/ -ut '$user $task' &"
-		"./feed_with_user_task.py -i $ip -d $xinhao/900M/AEE_F100_900/drone/ -ut '$user $task' &"
-		"./feed_with_user_task.py -i $ip -d $xinhao/1400M/入云龙1550/1440_28ms_2/ -ut '$user $task' &"
-		"./feed_with_user_task.py -i $ip -d $xinhao/2400M/DJI\(大疆\)\(报文\)-Air_2S/2412.5-20M/ -p 8001 -ut '$user $task' &"
-		"./feed_with_user_task.py -i $ip -d $xinhao/5800M/X7Pro/5800/5180/ -ut '$user $task' &"
+		"nohup ./feed_with_user_task.py -i $ip -d $xinhao/433M/433/459/ -ut '$user $task' >/dev/null 2>&1 &"
+		"nohup ./feed_with_user_task.py -i $ip -d $xinhao/900M/AEE_F100_900/drone/ -ut '$user $task' >/dev/null 2>&1 &"
+		"nohup ./feed_with_user_task.py -i $ip -d $xinhao/1400M/入云龙1550/1440_28ms_2/ -ut '$user $task' >/dev/null 2>&1 &"
+		"nohup ./feed_with_user_task.py -i $ip -d $xinhao/2400M/DJI\(大疆\)\(报文\)-Air_2S/2412.5-20M/ -p 8001 -ut '$user $task' >/dev/null 2>&1 &"
+		"nohup ./feed_with_user_task.py -i $ip -d $xinhao/5800M/X7Pro/5800/5180/ -ut '$user $task' >/dev/null 2>&1 &"
 	)
 	
 	# 判断变量不为空，否则退出程序
